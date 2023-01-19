@@ -20,7 +20,7 @@ st.markdown("""
     - How often are drivers late for the next check-in? How does it impact the next driver?
     - How is the delay repartition between the different check-in type?
     And explore the possibility of a new feature, a threshold between the location to avoid late rentals, answering questions like:
-    - Which share of our owner’s revenue would potentially be affected by the feature How many rentals would be affected by the feature depending on the threshold and scope we choose?
+    - Which share of our owner’s revenue would potentially be affected by the feature? How many rentals would be affected by the feature depending on the threshold and scope we choose?
     - How long should the minimum delay be?
     - should we enable the feature for all cars?, only Connect cars?
     - How many problematic cases will it solve depending on the chosen threshold and scope?
@@ -98,16 +98,16 @@ with col3:
     st.markdown("""Additional data analysis""")
     st.markdown("""                     """)
     st.markdown("""
-It seems that there is way more late rental in proportion when the check-in type is mobile, but it might be that there is juste more mobile checking, 
+It seems that there is way more late rental in proportion when the check-in type is mobile, but it might be that there is juste more mobile check-in, 
 how is it when we look at the percentage:
 """)
     Late_perc_mobile = len(df_delay.loc[((df_delay['checkin_type'] == 'mobile') & (df_delay['checkout_status'] == 'Late')),:])/len(df_delay.loc[(df_delay['checkin_type'] == 'mobile'),:])*100
     Late_perc_connect = len(df_delay.loc[((df_delay['checkin_type'] == 'connect') & (df_delay['checkout_status'] == 'Late')),:])/len(df_delay.loc[(df_delay['checkin_type'] == 'connect'),:])*100
-    st.metric("Percentage of late rental checkout for the check in by connect:", round(Late_perc_connect,2))
-    st.metric("Percentage of late rental checkout for the check in by mobile:", round(Late_perc_mobile,2))
+    st.metric("Percentage of late rental for the check in by connect:", round(Late_perc_connect,2))
+    st.metric("Percentage of late rental for the check in by mobile:", round(Late_perc_mobile,2))
 
     st.markdown("""
-As we can see the mobile type of check in also got an higher proportion of late checkout of 13%, to finaly help decide if there is a need to add a threshold only on 
+As we can see the mobile type of check in also got an higher proportion of late checkout of 13%, to finaly help decide if there is a need to add a threshold only for 
 one type of check-in type (like the connect) we can check the average delay time by check-in type:
 """)
 
@@ -122,7 +122,7 @@ one type of check-in type (like the connect) we can check the average delay time
 
 st.markdown("""
 Considering this data it could be intresting for the  product Management team to consider creating a threshold concerning at least the people that check-in 
-by mobile
+by mobile.
 
 
 
@@ -206,13 +206,14 @@ Some numbers resultings from the analysis:
 """)
     st.metric("Number of impacted location :", len(df_impacted_loc))
     st.metric('Number of canceled rentals with a delay:',len(df_impacted_canceled_loc))
-    st.metric("Percentage of cancellations without apparent reasons (cancel in non impacted locations):",round((no_late_cancel/len(df_non_impacted_loc) *100),2))
-    st.metric("Percentage of rental canceled due to delay (cancel percentage in the impacted locations): ",round((len(df_impacted_canceled_loc)/len(df_impacted_loc)*100),2))
+    st.metric("Percentage of cancellations without apparent reasons (in non impacted locations):",round((no_late_cancel/len(df_non_impacted_loc) *100),2))
+    st.metric("Percentage of rental canceled due to delay (in the impacted locations): ",round((len(df_impacted_canceled_loc)/len(df_impacted_loc)*100),2))
     st.markdown("We notice a higher percentage of canceled rentals when the delay of a rental impacts the next rental")
-    st.metric("We can estimate the percentage of rentals canceled (with every location comprised impacted and non impacted) due to this delay at: ", round(((len(df_impacted_canceled_loc)- (len(df_impacted_canceled_loc)*11/100))/len(df_delay)*100),2))
-    st.markdown("(Number of rentals impacted and canceled less the 11% which are representative of rentals canceled without reason)")
+    st.markdown("We can estimate the percentage of rentals canceled (with every location comprised impacted and non impacted) due to this delay at: ")
+    st.metric('Test',round(((len(df_impacted_canceled_loc)- (len(df_impacted_canceled_loc)*11/100))/len(df_delay)*100),2))
+    st.markdown("(Number of rentals impacted and canceled minus the 11% which are representative of rentals canceled without reason)")
 
-st.markdown("The number of location impacted by late rental is quite small and can question the necessity of a threshold, we will study further the question in the next part")
+st.markdown("The number of location impacted by late rental is quite small and can question the necessity of a threshold, we will study further the threshold management in the next part")
     
 
 st.markdown("""
@@ -222,8 +223,8 @@ st.markdown("""
 st.subheader("Threshold management")
 
 st.markdown("""
-The problematic is difficult to approach, as a threshold will indeed prevent the late location to impact other, 
-it also make in every cars (which include those who would not be unavailble due to delay) unavaible for an extra time, and therefore losing potential client and profit.
+The problem is difficult to approach, as a threshold would indeed prevent the late location to impact others, but
+it would also make every cars (including those who would not impacted by a late rental) unavaible for an extra period of time, and therefore losing potential client and profit.
 
 Therefore we need to find a good balance in order to avoid a maximum of the friction but also having the smaller threshold possible to avoid making the cars unavaible for too long.
 """)
@@ -238,7 +239,7 @@ fig_late_preview = px.bar(df_impacted_canceled_loc, x= 'real_delay_between_loc_i
 st.plotly_chart(fig_late_preview, use_container_width=True)
 
 st.markdown("""
-With this preview we can already identity that a threshold aroung 200 minutes could be intresting to avoid a majority of the late rental. 
+With this preview we can already identity that a threshold around 200 minutes could be intresting to avoid a majority of the late rental. 
 
 Now let's look at how a threshold would impact the location (late rental avoided and location missed), based on the precedent analysis we are only looking at the 
 location done by mobile check-in:
@@ -282,10 +283,10 @@ with st.form("Threshold results preview"):
 
 st.markdown("""
 As we can see on the graph (when we set a high threshold number like 500 to get an overview) and as we could see on the preview most of the delay can be avoid with a threshold around 200 minutes,
-after this the increase in the late location avoided become very slow, while the possible missed location due to the increase of time and therefore indisponibility between two location keep increasing.
+after this the increase in the late location avoided become very slow, while the possible missed location due to the increase of time (and therefore indisponibility between two location) keep increasing.
 
 Considering that even with a threshold around 200 the missed location is significatively higher (906) than the late location avoided (180) the necessity of a threshold can be discussed.
-The management team must determined if the friction caused by the delay are more important than the high number of missed location induce by a threshold.
+The management team must determined if the frictions (and their consequences) caused by the delay are more important than the high number of missed location induce by a threshold.
 """)
 
 st.sidebar.header("Rental delay management dashboard")
