@@ -1,6 +1,36 @@
 # Jedha_Project_Getaround
+
+Bloc n°5: Industrialisation d'un algorithme d'apprentissage automatique et automatisation des processus de décision
+
 7ème projet de la formation Jedha pour obtenir la certification en Data Science. Le projet porte sur de l'analyse de données et le déploiement d'application
 
+Nom: Sutz
+
+Prénom: Florian
+
+Mail: floriansutz@hotmail.fr
+
+Lien de la vidéo :
+lien du dashboard: https://getaround-manage-board.herokuapp.com/
+Lien de l'API: https://getaound-predic-api.herokuapp.com/docs#/
+
+Présentation du répository:
+
+- streamlit_app : contient les différents fichiers ayant servi pour créer et déployer le dashboard portant sur l'analyse des locations rendu en retard, leurs occurences, leurs impacts, et la nouvelle fonctionnalité du "seuil". Le fichier contenant le script du dashboard est "app.py".
+Le travail de fond pour cette analyse a été effectué dans le fichier Deployment_project.ipynb (qui ne se trouve pas dans le dossier streamlit), il contient également des analyses/informations supplémentaires qui ne sont pas présentes dans le dashboard. 
+
+Lien du dashboard: https://getaround-manage-board.herokuapp.com/
+
+- Price_prediction_FASTAPI: contient les différents fichiers ayant servi pour créer et déployer l'API mis en place pour fournir une prédiction de prix pour la location de voiture basé sur les caractéristiques de la voiture. Le fichier contenant le script de construction de l'API est "app.py", le fichier "model_final.json" est le modèle de machine learning utilisé, et "preprocessor.pkl" le preprocesseur. 
+Le travail de fond pour produire le modèle, le preprocesseur, ou encore le dataset nettoyé se trouve dans le fichier "Price_optimization.ipynb".
+
+Lien de l'API: https://getaound-predic-api.herokuapp.com/docs#/
+
+- Deployment_project.ipynb : contient le travail de fond d'analyse des retards présent dans le dashboard, ainsi que des analyses et informations supplémentaires qui n'ont pas été ajouté au dashboard.
+
+- Price_optimization.ipynb: contient le travail effectué pour produire le modèle de machine learning utilisé pour l'API, passant par le nettoyage, le preprocessing et l'essai de différents modèles. 
+
+- get_around_delay_analysis.xlsx, et get_around_pricing_project.csv: datasets donnés et utilisé pour le projet.
 
 
 Contexte et consigne: 
