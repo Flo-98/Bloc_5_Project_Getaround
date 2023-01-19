@@ -37,6 +37,8 @@ Lien de l'API: https://getaound-predic-api.herokuapp.com/docs#/
 - get_around_delay_analysis.xlsx, et get_around_pricing_project.csv: datasets donnés et utilisé pour le projet.
 
 
+------------------------------------------------------------------
+
 Contexte et consigne: 
 
 GetAround
