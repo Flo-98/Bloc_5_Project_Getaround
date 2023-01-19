@@ -16,6 +16,8 @@ lien du dashboard: https://getaround-manage-board.herokuapp.com/
 
 Lien de l'API: https://getaound-predic-api.herokuapp.com/docs#/
 
+-----------------------------------
+
 Présentation du répository:
 
 - streamlit_app : contient les différents fichiers ayant servi pour créer et déployer le dashboard portant sur l'analyse des locations rendu en retard, leurs occurences, leurs impacts, et la nouvelle fonctionnalité du "seuil". Le fichier contenant le script du dashboard est "app.py".
