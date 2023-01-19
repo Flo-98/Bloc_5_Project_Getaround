@@ -27,16 +27,6 @@ Check out documentation for more information on each endpoint.
 
 tags_metadata = [
     {
-        "name": "Categorical",
-        "description": "Endpoints that deal with categorical data",
-    },
-
-    {
-        "name": "Numerical",
-        "description": "Endpoints that deal with numerical data"
-    },
-
-    {
         "name": "Preview",
         "description": "Endpoints that quickly explore dataset"
     },
