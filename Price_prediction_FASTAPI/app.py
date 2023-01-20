@@ -90,7 +90,6 @@ class PredictionFeatures(BaseModel):
     has_speed_regulator: bool
     winter_tires: bool
 
-
 @app.get("/features", tags=["Features"])
 async def features(feature):
     """
