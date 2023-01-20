@@ -85,14 +85,7 @@ with col2:
     fig_late_repartition = px.pie(df_delay, names='delay_repartition', title='Proportion of late checkout', width= 700)
     fig_late_repartition.update_layout(title_text='Proportion of late checkout by check-in type',title_y=0.95,title_x=0.5)
     st.plotly_chart(fig_late_repartition, use_container_width=True)
-#     st.markdown("""
-# It seems that there is way more late rental in proportion when the check-in type is mobile, but it might be that there is juste more mobile checking, 
-# how is it when we look at the percentage:
-# """)
-#     Late_perc_mobile = len(df_delay.loc[((df_delay['checkin_type'] == 'mobile') & (df_delay['checkout_status'] == 'Late')),:])/len(df_delay.loc[(df_delay['checkin_type'] == 'mobile'),:])*100
-#     Late_perc_connect = len(df_delay.loc[((df_delay['checkin_type'] == 'connect') & (df_delay['checkout_status'] == 'Late')),:])/len(df_delay.loc[(df_delay['checkin_type'] == 'connect'),:])*100
-#     st.metric("Late rental checkout for the check in by connect:", Late_perc_connect)
-#     st.metric("Late rental checkout for the check in by mobile:", Late_perc_mobile)
+
 
 with col3:
     st.markdown("""Additional data analysis""")
@@ -210,7 +203,7 @@ Some numbers resultings from the analysis:
     st.metric("Percentage of rental canceled due to delay (in the impacted locations): ",round((len(df_impacted_canceled_loc)/len(df_impacted_loc)*100),2))
     st.markdown("We notice a higher percentage of canceled rentals when the delay of a rental impacts the next rental")
     st.markdown("We can estimate the percentage of rentals canceled (with every location comprised impacted and non impacted) due to this delay at: ")
-    st.metric('Test',round(((len(df_impacted_canceled_loc)- (len(df_impacted_canceled_loc)*11/100))/len(df_delay)*100),2))
+    st.metric('',round(((len(df_impacted_canceled_loc)- (len(df_impacted_canceled_loc)*11/100))/len(df_delay)*100),2))
     st.markdown("(Number of rentals impacted and canceled minus the 11% which are representative of rentals canceled without reason)")
 
 st.markdown("The number of location impacted by late rental is quite small and can question the necessity of a threshold, we will study further the threshold management in the next part")
