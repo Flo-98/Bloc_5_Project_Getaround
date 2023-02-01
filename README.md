@@ -10,7 +10,7 @@ Prénom: Florian
 
 Mail: floriansutz@hotmail.fr
 
-Lien de la vidéo :
+Lien de la vidéo : https://share.vidyard.com/watch/aQYFsxAGdWaDV3xxwi46P6?
 
 lien du dashboard: https://getaround-manage-board.herokuapp.com/
 
